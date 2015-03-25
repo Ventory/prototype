@@ -7,7 +7,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res) {
-	res.render('index', { title: 'Logged In', content: 'Hallo, ' + req.body.username });
+	if (req.body.username.trim() != '') {
+		res.render('index', { title: 'Logged In', content: 'Hallo, ' + req.body.username });
+	} else {
+		res.redirect('/');
+	}
 })
 
 module.exports = router;
